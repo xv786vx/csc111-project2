@@ -98,7 +98,7 @@ class Driver:
         """ Hash based on driver's name."""
         return hash(self.driver_name)
 
-    def __eq__(self, other):
+    def __eq__(self, other) -> bool:
         """ Check if this Driver is equal to another object."""
         return isinstance(other, Driver) and self.driver_name == other.driver_name
 
@@ -120,7 +120,7 @@ class Constructor:
     all_driver_elo: dict[Driver, float]
     constructor_elo: float
 
-    def __init__(self, constructor_name: str):
+    def __init__(self, constructor_name: str) -> None:
         """Initialize a new Constructor with the given name."""
         self.constructor_name = constructor_name
         self.all_driver_elo = {}
@@ -143,7 +143,7 @@ class Constructor:
         """ Hash based on constructor's name."""
         return hash(self.constructor_name)
 
-    def __eq__(self, other):
+    def __eq__(self, other) -> bool:
         """ Check if this Constructor is equal to another object."""
         return isinstance(other, Constructor) and self.constructor_name == other.constructor_name
 
@@ -161,7 +161,7 @@ class F1Graph:
     drivers: dict[str, Driver]
     edges: set[tuple[Driver, Constructor]]
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.database = set()
         self.drivers = {}
         self.edges = set()
@@ -195,9 +195,6 @@ def load_f1_graph(file_path: str) -> F1Graph:
 
         for row in reader:
             finish_points = float(row['finish_points'])
-            grid_position = int(row['grid'])
-            position_str = row['position']
-            position = float(position_str) if position_str else 0.0
             racer_name = row['racer_name']
             constructor_name = row['constructor_name']
             qual_points = int(row['qual_points'])

@@ -51,26 +51,3 @@ def simulate_whatif_for_nodes(f1_graph: F1Graph, driver_name: str, constructor_n
 
     new_final_elo = driver.calculate_final_elo()
     return prev_final_elo, whatif_rating, new_final_elo
-
-
-def simulate_whatif(f1_graph: F1Graph) -> None:
-    """
-    Prompt the user for a driver and a constructor, run the simulation, and print the results.
-    Preconditions:
-      - f1_graph must be a valid F1Graph instance with drivers and constructors loaded.
-      - The user must enter valid, non-empty strings for both driver and constructor that exist in f1_graph.
-
-    """
-    all_drivers = {}
-    for constr in f1_graph.database:
-        for drv in constr.all_driver_elo.keys():
-            all_drivers[drv.driver_name] = drv
-    all_constructors = {constr.constructor_name: constr for constr in f1_graph.database}
-
-    driver_name = input("Enter driver: ").strip()
-    constructor_name = input("Enter constructor: ").strip()
-
-    result = simulate_whatif_for_nodes(f1_graph, driver_name, constructor_name)
-    if result is None:
-        return
-    prev_final_elo, whatif_rating, new_final_elo = result
