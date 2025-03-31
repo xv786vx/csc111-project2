@@ -24,7 +24,7 @@ cyto.load_extra_layouts()
 from prediction import simulate_whatif_for_nodes
 from entities import load_f1_graph
 
-FILE_PATH = r"final_data.csv"
+FILE_PATH = r"preprocessing/data/final_data.csv"
 global_f1_graph = load_f1_graph(FILE_PATH)
 
 elements = []

@@ -17,12 +17,12 @@ This file is Copyright (c) 2025 Pranay Chopra, Sambhav Athreya, Sumedh Gadepalli
 """
 import pandas as pd
 
-races = pd.read_csv('races.csv')
-results = pd.read_csv('results.csv')
-qual_pos = pd.read_csv('qualifying.csv')
-constructors = pd.read_csv('constructors.csv')
-drivers = pd.read_csv('drivers.csv')
-laptimes = pd.read_csv('lap_times.csv')
+races = pd.read_csv('preprocessing/data/races.csv')
+results = pd.read_csv('preprocessing/data/results.csv')
+qual_pos = pd.read_csv('preprocessing/data/qualifying.csv')
+constructors = pd.read_csv('preprocessing/data/constructors.csv')
+drivers = pd.read_csv('preprocessing/data/drivers.csv')
+laptimes = pd.read_csv('preprocessing/data/lap_times.csv')
 
 qual_points_map = {
     1: 25,
