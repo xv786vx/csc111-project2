@@ -1,3 +1,20 @@
+"""CSC111 Winter 2025: Computational Proof of F1 Driver Performance Under Distinct Constructors (Data Processing)
+
+Module Description
+==================
+
+This module contains code that processes our dataset into useable content.
+
+Copyright and Usage Information
+===============================
+
+This file is provided solely for the personal and private use of teachers and TAs
+in CSC111 at the University of Toronto St. George campus. All forms of
+distribution of this code, whether as given or with any changes, are
+expressly prohibited.
+
+This file is Copyright (c) 2025 Pranay Chopra, Sambhav Athreya, Sumedh Gadepalli, and Firas Adnan Jalil.
+"""
 import pandas as pd
 
 races = pd.read_csv('data/races.csv')
@@ -36,10 +53,8 @@ include_racer_names = pd.merge(
     how='left'
 )
 
-
-
 include_racer_names['racer_name'] = include_racer_names['forename'] + ' ' + include_racer_names['surname']
-include_racer_names.drop(['forename', 'surname'], axis=1, inplace=True) 
+include_racer_names.drop(['forename', 'surname'], axis=1, inplace=True)
 
 # include_lap_times = pd.merge(
 #     include_racer_names,
@@ -56,13 +71,11 @@ include_constructors = pd.merge(
 )
 include_constructors.rename(columns={'name': 'constructor_name'}, inplace=True)
 
-
 final_df = include_constructors.sort_values(by=['year', 'raceId']).reset_index(drop=True).rename(columns={
     'points': 'finish_points',
 })
 
 final_df['qual_points'] = final_df['grid'].map(qual_points_map).fillna(0).astype(int)
-
 
 # NEW: Teammate comparison logic starts here
 
@@ -76,17 +89,17 @@ df_filtered = final_df[final_df.set_index(['raceId', 'constructorId']).index.isi
 
 # Self-merge to pair teammates
 merged = pd.merge(
-    df_filtered, 
-    df_filtered, 
-    on=['raceId', 'constructorId'], 
+    df_filtered,
+    df_filtered,
+    on=['raceId', 'constructorId'],
     suffixes=('_A', '_B')
 )
 merged = merged[merged['driverId_A'] < merged['driverId_B']]  # Remove duplicate pairs
 
 # Assign points based on position comparison
 merged['teammate_points_A'] = (
-    (merged['position_A'] < merged['position_B']).astype(int) 
-    + (merged['position_A'] == merged['position_B']).astype(int) * 0.5
+        (merged['position_A'] < merged['position_B']).astype(int)
+        + (merged['position_A'] == merged['position_B']).astype(int) * 0.5
 )
 merged['teammate_points_B'] = 1 - merged['teammate_points_A']
 

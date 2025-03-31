@@ -1,5 +1,25 @@
+"""CSC111 Winter 2025: Computational Proof of F1 Driver Performance Under Distinct Constructors (Relevant Objects)
+
+Module Description
+==================
+
+This module contains Python classes including Driver, Constructor and Graph that are
+used throughout our project.
+
+Copyright and Usage Information
+===============================
+
+This file is provided solely for the personal and private use of teachers and TAs
+in CSC111 at the University of Toronto St. George campus. All forms of
+distribution of this code, whether as given or with any changes, are
+expressly prohibited.
+
+This file is Copyright (c) 2025 Pranay Chopra, Sambhav Athreya, Sumedh Gadepalli, and Firas Adnan Jalil.
+"""
+
 import csv
 import math
+
 
 class Driver:
     """
@@ -24,11 +44,12 @@ class Driver:
         self.constructor_to_elo = {}
         self.final_elo = 0.0
 
-    def calculate_driver_elo(self, f1_graph: "F1Graph", pole_points: float | int, qual_points: float | int, teammate_position: float | int, name: str) -> None:
+    def calculate_driver_elo(self, f1_graph: "F1Graph", pole_points: float | int, qual_points: float | int,
+                             teammate_position: float | int, name: str) -> None:
         """
         Calculate and update the driver's ELO for a given race for a specific constructor.
         The ELO for the race is computed as a weighted sum of pole_points, qual_points, and teammate_position.
-        
+
         Preconditions:
          - f1_graph is an instance of F1Graph
          - pole_points, qual_points, teammate_position are numeric (int or float)
@@ -74,9 +95,11 @@ class Driver:
         return self.final_elo
 
     def __hash__(self):
+        """ Hash based on driver's name."""
         return hash(self.driver_name)
 
     def __eq__(self, other):
+        """ Check if this Driver is equal to another object."""
         return isinstance(other, Driver) and self.driver_name == other.driver_name
 
 
@@ -88,7 +111,7 @@ class Constructor:
         - constructor_name (str): the constructor's name
         - all_driver_elo (dict): maps Driver objects to their ELO values for this constructor
         - constructor_elo (float): the overall ELO of the constructor (average of driver ELOs)
-        
+
     Representation Invariants:
         - constructor_name != ''
         - constructor_elo >= 0.0
@@ -117,10 +140,11 @@ class Constructor:
         return self.constructor_elo
 
     def __hash__(self):
-        # Hash based on constructor's name.
+        """ Hash based on constructor's name."""
         return hash(self.constructor_name)
 
     def __eq__(self, other):
+        """ Check if this Constructor is equal to another object."""
         return isinstance(other, Constructor) and self.constructor_name == other.constructor_name
 
 
@@ -159,7 +183,7 @@ def load_f1_graph(file_path: str) -> F1Graph:
     """
     Load the F1 data from the given CSV file, update driver and constructor ELOs,
     and return an F1Graph object containing the data.
-    
+
     The CSV file is expected to have columns:
     raceId, year, driverId, constructorId, finish_points, grid, position,
     racer_name, constructor_name, qual_points, teammate_points
@@ -203,10 +227,10 @@ def load_f1_graph(file_path: str) -> F1Graph:
                 constructor.all_driver_elo[driver] = 0.0
 
             driver.calculate_driver_elo(f1_graph,
-                                          pole_points=finish_points,
-                                          qual_points=qual_points,
-                                          teammate_position=teammate_points,
-                                          name=constructor_name)
+                                        pole_points=finish_points,
+                                        qual_points=qual_points,
+                                        teammate_position=teammate_points,
+                                        name=constructor_name)
             constructor.all_driver_elo[driver] = driver.constructor_to_elo[constructor_name]
             constructor.calculate_elo()
             f1_graph.add_edge(driver, constructor)

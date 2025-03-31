@@ -1,6 +1,25 @@
+"""CSC111 Winter 2025: Computational Proof of F1 Driver Performance Under Distinct Constructors (Graphs Visualization)
+
+Module Description
+==================
+
+This module contains Python functions that you can use to visualize our graph.
+
+Copyright and Usage Information
+===============================
+
+This file is provided solely for the personal and private use of teachers and TAs
+in CSC111 at the University of Toronto St. George campus. All forms of
+distribution of this code, whether as given or with any changes, are
+expressly prohibited.
+
+This file is Copyright (c) 2025 Pranay Chopra, Sambhav Athreya, Sumedh Gadepalli, and Firas Adnan Jalil.
+"""
+
 import dash
 from dash import dcc, html, Input, Output, State, dash_table
 import dash_cytoscape as cyto
+
 cyto.load_extra_layouts()
 from prediction import simulate_whatif_for_nodes
 from entities import load_f1_graph, Driver, Constructor, F1Graph
@@ -81,7 +100,7 @@ app.layout = html.Div(
     style={
         "width": "100vw",
         "height": "100vh",
-        "postiion":"relative",
+        "postiion": "relative",
         "display": "flex",
         "flexDirection": "row",
         "fontFamily": "'Red Hat Display', sans-serif",
@@ -94,10 +113,10 @@ app.layout = html.Div(
         html.Img(
             src="https://www.formula1.com/etc/designs/fom-website/images/f1_logo.svg",
             style={"position": "absolute",
-        "top": "20px",
-        "left": "20px",
-        "width": "100px",
-        "zIndex": "1000"}
+                   "top": "20px",
+                   "left": "20px",
+                   "width": "100px",
+                   "zIndex": "1000"}
         ),
         cyto.Cytoscape(
             id="cytoscape",
@@ -117,7 +136,7 @@ app.layout = html.Div(
                 {
                     "selector": "node",
                     "style": {
-                        "grabbable":"true",
+                        "grabbable": "true",
                         "label": "data(label)",
                         "font-size": "20px",
                         "text-halign": "center",
@@ -273,6 +292,7 @@ def update_or_clear_node_store(tapNodeData, simulation_output, storeData):
     else:
         storeData.append(tapNodeData)
     return storeData
+
 
 @app.callback(
     Output("layout-store", "data"),
@@ -445,6 +465,6 @@ def manage_edges(add_n_clicks, remove_n_clicks, node_store, current_elements, ta
 
     return current_elements, table_data, message
 
+
 if __name__ == "__main__":
     app.run(debug=True)
-
