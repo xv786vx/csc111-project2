@@ -1,22 +1,3 @@
-"""CSC111 Winter 2025: Computational Proof of F1 Driver Performance Under Distinct Constructors (What-If Prediction)
-
-Module Description
-==================
-
-This module contains Python functions that contain formulas to predict simulations that tell us
-perfromance elo.
-
-Copyright and Usage Information
-===============================
-
-This file is provided solely for the personal and private use of teachers and TAs
-in CSC111 at the University of Toronto St. George campus. All forms of
-distribution of this code, whether as given or with any changes, are
-expressly prohibited.
-
-This file is Copyright (c) 2025 Pranay Chopra, Sambhav Athreya, Sumedh Gadepalli, and Firas Adnan Jalil.
-"""
-
 from entities import load_f1_graph, Driver, Constructor, F1Graph
 
 
