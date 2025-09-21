@@ -7,7 +7,7 @@ An interactive web application that analyzes Formula 1 driver and constructor pe
 
 ## Authors
 
-Developed by: Firas Adnan Jalil, Sambhav Athreya, Pranay Chopra and Sumedh Gadepalli
+Firas Adnan Jalil, Sambhav Athreya, Pranay Chopra and Sumedh Gadepalli
 
 ## Overview
 
