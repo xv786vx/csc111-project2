@@ -2,6 +2,9 @@
 
 An interactive web application that analyzes Formula 1 driver and constructor performance using ELO rating systems and enables "what-if" scenario simulations to explore how driver ratings would change if they raced for different teams.
 
+## Demo
+![Untitled video - Made with Clipchamp](https://github.com/user-attachments/assets/72f40b43-8064-4d6b-a42c-068417f55665)
+
 ## Authors
 
 Developed by: Firas Adnan Jalil, Sambhav Athreya, Pranay Chopra and Sumedh Gadepalli
