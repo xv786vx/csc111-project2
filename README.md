@@ -1,4 +1,4 @@
-# Formula 1 ELO Rating Simulator
+# Formula 1 Performance Simulation Engine
 
 An interactive web application that analyzes Formula 1 driver and constructor performance using ELO rating systems and enables "what-if" scenario simulations to explore how driver ratings would change if they raced for different teams.
 
